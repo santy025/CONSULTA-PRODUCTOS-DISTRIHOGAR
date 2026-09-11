@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a746a">
+<title>Feria del Hogar · Precios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e9edec; --surface:#ffffff; --surface-2:#f4f7f6;
+  --ink:#14201e; --ink-soft:#5c6a66; --ink-faint:#8a9793;
+  --line:#e5ebe9; --line-soft:#eef2f1;
+  --teal:#00bfb3; --teal-deep:#0a746a; --teal-wash:#e0f4f0;
+  --amber:#a85e00; --amber-wash:#fce6cb;
+  --was:#9aa5a1;
+  --radius:20px; --radius-sm:12px;
+  --shadow:0 1px 2px rgba(20,32,30,.04),0 10px 26px rgba(20,32,30,.06);
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  font-family:'Manrope',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--ink);
+  background:radial-gradient(120% 55% at 50% -8%, #eff4f2 0%, var(--bg) 55%) fixed;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.app{max-width:620px;margin:0 auto;min-height:100vh;
+  padding-left:max(14px,var(--safe-l));padding-right:max(14px,var(--safe-r))}
+
+/* ---------- Header ---------- */
+.brand{padding:calc(18px + var(--safe-t)) 2px 10px}
+.cobrand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:13.5px;letter-spacing:.2px}
+.cobrand .jt{color:var(--teal-deep)} .cobrand .x{color:var(--ink-faint);font-weight:600} .cobrand .dh{color:var(--ink)}
+.brand h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:27px;line-height:1.05;margin:11px 0 5px;letter-spacing:-.5px}
+.brand .tag{margin:0;color:var(--ink-soft);font-size:13px;font-weight:500}
+
+/* ---------- Sticky search + chips ---------- */
+.bar{position:sticky;top:0;z-index:40;margin:0 -2px;padding:10px 2px 8px;
+  background:linear-gradient(180deg,rgba(233,237,236,.98),rgba(233,237,236,.85));
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(20,32,30,.06)}
+.search{position:relative;display:flex;align-items:center}
+.search svg.ic{position:absolute;left:15px;width:20px;height:20px;color:var(--ink-faint);pointer-events:none}
+#q{width:100%;height:54px;border:1.5px solid var(--line);background:var(--surface);border-radius:15px;
+  padding:0 46px 0 45px;font-size:17px;font-weight:600;color:var(--ink);font-family:inherit;box-shadow:var(--shadow);
+  outline:none;transition:border-color .15s,box-shadow .15s}
+#q::placeholder{color:var(--ink-faint);font-weight:500}
+#q:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(0,191,179,.16)}
+#clear{position:absolute;right:9px;width:34px;height:34px;border:none;border-radius:50%;background:var(--surface-2);
+  color:var(--ink-soft);font-size:16px;cursor:pointer;display:none;align-items:center;justify-content:center}
+#clear.on{display:flex} #clear:active{background:#e7ecea}
+.chips{display:flex;gap:8px;overflow-x:auto;margin-top:9px;padding:1px 2px 2px;scrollbar-width:none;scroll-behavior:smooth}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:999px;cursor:pointer;
+  border:1.5px solid var(--line);background:var(--surface);color:var(--ink-soft);font-size:13.5px;font-weight:700;white-space:nowrap;
+  transition:background .15s,color .15s,border-color .15s}
+.chip .c{font-weight:700;font-size:11.5px;color:var(--ink-faint);background:var(--surface-2);padding:2px 7px;border-radius:999px;line-height:1}
+.chip.active{background:var(--teal-deep);color:#fff;border-color:var(--teal-deep)}
+.chip.active .c{background:rgba(255,255,255,.22);color:#fff}
+.chip:active{transform:scale(.97)}
+
+/* ---------- Meta ---------- */
+.meta{padding:14px 4px 2px;color:var(--ink-soft);font-size:13px;font-weight:600}
+.meta b{color:var(--ink);font-weight:800}
+
+/* ---------- List / cards ---------- */
+#list{display:flex;flex-direction:column;gap:13px;padding:8px 0 6px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:15px 16px 6px;animation:rise .4s cubic-bezier(.2,.7,.2,1) both}
+.chead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px}
+.cat{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--teal-deep);
+  background:var(--teal-wash);padding:4px 9px;border-radius:7px}
+.range{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--teal-deep);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.range i{font-family:'Manrope',sans-serif;font-style:normal;font-weight:700;font-size:10.5px;letter-spacing:.4px;
+  text-transform:uppercase;color:var(--ink-faint);margin-right:4px}
+.name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17.5px;line-height:1.25;margin:0 0 4px;color:var(--ink)}
+.name mark{background:rgba(0,191,179,.22);color:inherit;border-radius:3px;padding:0 1px}
+
+/* rows = one size each */
+.rows{display:flex;flex-direction:column}
+.row{position:relative;padding:13px 0}
+.row + .row{border-top:1px dashed var(--line)}
+.row .badge{position:absolute;top:13px;right:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12.5px;
+  color:var(--amber);background:var(--amber-wash);padding:5px 9px;border-radius:9px;letter-spacing:-.2px;line-height:1}
+.size{display:inline-block;font-size:12.5px;font-weight:800;color:var(--teal-deep);background:var(--teal-wash);
+  padding:4px 10px;border-radius:8px;margin-bottom:8px;letter-spacing:.1px}
+.prices{display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 9px;padding-right:64px}
+.nlab{font-size:10.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--ink-faint);align-self:center}
+.now{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:23px;color:var(--teal-deep);line-height:1;
+  letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+.meta2{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:3px 8px}
+.was{color:var(--was);text-decoration:line-through;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+.was i{font-style:normal;font-weight:700;font-size:10.5px;letter-spacing:.3px;text-transform:uppercase;
+  color:var(--ink-faint);margin-right:3px;text-decoration:none;display:inline-block}
+.dot{color:var(--ink-faint)}
+.save{color:var(--amber);font-size:12.5px;font-weight:800;font-variant-numeric:tabular-nums}
+.codes{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:10px}
+.clab{font-size:10.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--ink-faint)}
+.code{display:inline-flex;align-items:center;gap:6px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13px;
+  color:var(--ink);background:var(--surface-2);border:1px solid var(--line);padding:9px 11px;border-radius:10px;cursor:pointer;
+  letter-spacing:.2px;font-variant-numeric:tabular-nums;transition:border-color .15s,background .15s;min-height:40px}
+.code svg{width:13px;height:13px;color:var(--ink-faint);flex:0 0 auto}
+.code mark{background:rgba(255,193,7,.4);color:inherit;border-radius:2px;padding:0 1px}
+.code:active{background:var(--teal-wash);border-color:var(--teal)}
+
+/* ---------- Empty ---------- */
+.empty{text-align:center;padding:56px 24px;color:var(--ink-soft)}
+.empty .em{font-size:38px;margin-bottom:10px}
+.empty h3{margin:0 0 6px;font-size:17px;color:var(--ink);font-weight:800}
+.empty p{margin:0;font-size:14px}
+
+/* ---------- Footer ---------- */
+.foot{padding:22px 4px calc(28px + var(--safe-b));color:var(--ink-faint);font-size:11.5px;font-weight:600;text-align:center;line-height:1.6}
+
+/* ---------- Toast ---------- */
+#toast{position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:calc(20px + var(--safe-b));z-index:100;
+  background:var(--ink);color:#fff;font-size:13.5px;font-weight:700;padding:12px 18px;border-radius:999px;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);display:flex;align-items:center;gap:8px;opacity:0;pointer-events:none;
+  transition:opacity .2s,transform .2s;max-width:90vw}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast svg{width:16px;height:16px;color:var(--teal)}
+
+@keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.card{animation:none}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="brand">
+    <div class="cobrand"><span class="jt">job&amp;talent</span><span class="x">×</span><span class="dh">Distrihogar</span></div>
+    <h1>Feria del Hogar</h1>
+    <p class="tag">Precios oficiales · toca un código para copiarlo</p>
+  </header>
+
+  <div class="bar">
+    <div class="search">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+      <input id="q" type="text" inputmode="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Busca por nombre o código…">
+      <button id="clear" aria-label="Limpiar búsqueda">✕</button>
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="meta" id="meta"></div>
+  <main id="list"></main>
+  <div class="empty" id="empty" hidden>
+    <div class="em">🔍</div><h3>Sin resultados</h3><p>Prueba con otra palabra o parte del código.</p>
+  </div>
+
+  <footer class="foot">Feria del Hogar · Corferias, Bogotá<br>Herramienta de consulta · job&amp;talent × Distrihogar</footer>
+</div>
+
+<div id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg><span id="toast-t">Código copiado</span></div>
+
+<script>
+const PRODUCTS = [{"id": 0, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 150 hilos polialgodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 156345, "d": 93807, "c": ["7702704594627"]}, {"t": "Semidoble", "f": 179445, "d": 107667, "c": ["7702704594672"]}, {"t": "Extradoble", "f": 202545, "d": 121527, "c": ["7702704594733"]}, {"t": "King", "f": 219345, "d": 131607, "c": ["7702704594764"]}]}, {"id": 1, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 180 hilos polialgodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 184695, "d": 110817, "c": ["7702704594818"]}, {"t": "Semidoble", "f": 207795, "d": 124677, "c": ["7702704594849"]}, {"t": "Doble", "f": 219345, "d": 131607, "c": ["7702704594894"]}, {"t": "Extradoble", "f": 230895, "d": 138537, "c": ["7702704594948"]}, {"t": "King", "f": 242445, "d": 145467, "c": ["7702704594993"]}]}, {"id": 2, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 300 hilos 100% algodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 324345, "d": 194607, "c": ["7702704595662", "7702704595587", "7702704595655", "7702704595648"]}, {"t": "Semidoble", "f": 346395, "d": 207837, "c": ["7702704595730", "7702704595723", "7702704595747", "7702704595754"]}, {"t": "Doble", "f": 357945, "d": 214767, "c": ["7702704595822", "7702704595815", "7702704595839", "7702704595846"]}, {"t": "Extradoble", "f": 368445, "d": 221067, "c": ["7702704595914", "7702704595907", "7702704595921", "7702704595938"]}, {"t": "King", "f": 385245, "d": 231147, "c": ["7702704596003", "7702704595990", "7702704596010", "7702704596027"]}]}, {"id": 3, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 400 hilos 100% algodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 382095, "d": 229257, "c": ["7702704596058", "7702704680498", "7702704680481"]}, {"t": "Semidoble", "f": 404145, "d": 242487, "c": ["7702704596096", "7702704680511", "7702704680504"]}, {"t": "Doble", "f": 414645, "d": 248787, "c": ["7702704596133", "7702704680535", "7702704680528"]}, {"t": "Extradoble", "f": 426195, "d": 255717, "c": ["7702704596171", "7702704680559", "7702704680542"]}, {"t": "King", "f": 440895, "d": 264537, "c": ["7702704596218", "7702704680573", "7702704680566"]}]}, {"id": 4, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 400 hilos Menfis (E12521)", "pct": 40, "v": [{"t": "Sencillo", "f": 400995, "d": 240597, "c": ["7702704699438"]}, {"t": "Semidoble", "f": 423045, "d": 253827, "c": ["7702704699469"]}, {"t": "Doble", "f": 433545, "d": 260127, "c": ["7702704699483"]}, {"t": "Extradoble", "f": 445095, "d": 267057, "c": ["7702704699490"]}, {"t": "King", "f": 460845, "d": 276507, "c": ["7702704699506"]}]}, {"id": 5, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 300 hilos 100% algodón Cagliari", "pct": 40, "v": [{"t": "Doble", "f": 419895, "d": 251937, "c": ["7702704996711"]}, {"t": "Extradoble", "f": 430395, "d": 258237, "c": ["7702704996742"]}, {"t": "King", "f": 446145, "d": 267687, "c": ["7702704996797"]}]}, {"id": 6, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 300 hilos 100% algodón Sateen Stripe", "pct": 40, "v": [{"t": "Doble", "f": 472395, "d": 283437, "c": ["7702704566112"]}, {"t": "Extradoble", "f": 482895, "d": 289737, "c": ["7702704566143"]}, {"t": "King", "f": 499695, "d": 299817, "c": ["7702704566174"]}]}, {"id": 7, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 300 hilos Coastal", "pct": 40, "v": [{"t": "Doble", "f": 496545, "d": 297927, "c": ["7702704972890"]}, {"t": "Extradoble", "f": 507045, "d": 304227, "c": ["7702704972906"]}, {"t": "King", "f": 523845, "d": 314307, "c": ["7702704972913"]}]}, {"id": 8, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 300 hilos cenefa lino (Legacy)", "pct": 40, "v": [{"t": "Doble", "f": 451395, "d": 270837, "c": ["7702704675470"]}, {"t": "Extradoble", "f": 461895, "d": 277137, "c": ["7702704675487"]}, {"t": "King", "f": 482895, "d": 289737, "c": ["7702704675494"]}]}, {"id": 9, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 400 hilos Cairo", "pct": 40, "v": [{"t": "Doble", "f": 648795, "d": 389277, "c": ["7702704699582"]}, {"t": "Extradoble", "f": 659295, "d": 395577, "c": ["7702704699599"]}, {"t": "King", "f": 678195, "d": 406917, "c": ["7702704699605"]}]}, {"id": 10, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 400 hilos Menfis", "pct": 40, "v": [{"t": "Doble", "f": 598395, "d": 359037, "c": ["7702704699339"]}, {"t": "Extradoble", "f": 608895, "d": 365337, "c": ["7702704699346"]}, {"t": "King", "f": 625695, "d": 375417, "c": ["7702704699353"]}]}, {"id": 11, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 400 hilos Menfis Charcoal / Moca", "pct": 40, "v": [{"t": "Doble", "f": 593145, "d": 355887, "c": ["7702704680320", "7702704680313"]}, {"t": "Extradoble", "f": 604695, "d": 362817, "c": ["7702704680344", "7702704680337"]}, {"t": "King", "f": 621495, "d": 372897, "c": ["7702704680368", "7702704680351"]}]}, {"id": 12, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama HE 300 hilos polialgodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 335895, "d": 201537, "c": ["7702704439454"]}, {"t": "Semidoble", "f": 346395, "d": 207837, "c": ["7702704439461"]}, {"t": "Doble", "f": 356895, "d": 214137, "c": ["7702704439478"]}, {"t": "Extradoble", "f": 367395, "d": 220437, "c": ["7702704439485"]}, {"t": "King", "f": 388395, "d": 233037, "c": ["7702704439492"]}]}, {"id": 13, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama HE 400 hilos Cairo Charcoal / Moca", "pct": 40, "v": [{"t": "Doble", "f": 629895, "d": 377937, "c": ["7702704680122", "7702704680115"]}, {"t": "Extradoble", "f": 641445, "d": 384867, "c": ["7702704680146", "7702704680139"]}, {"t": "King", "f": 657195, "d": 394317, "c": ["7702704680160", "7702704680153"]}]}, {"id": 14, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 180 hilos Essencial", "pct": 40, "v": [{"t": "Sencillo", "f": 306495, "d": 183897, "c": ["7702704435623"]}, {"t": "Semidoble", "f": 322245, "d": 193347, "c": ["7702704435630"]}, {"t": "Doble", "f": 333795, "d": 200277, "c": ["7702704435678"]}, {"t": "Extradoble", "f": 345345, "d": 207207, "c": ["7702704435715"]}, {"t": "King", "f": 385245, "d": 231147, "c": ["7702704435753"]}]}, {"id": 15, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 250 hilos HE Sateen Stripe", "pct": 40, "v": [{"t": "Sencillo", "f": 403095, "d": 241857, "c": ["7702704452200"]}, {"t": "Extradoble", "f": 447195, "d": 268317, "c": ["7702704452231"]}, {"t": "King", "f": 462945, "d": 277767, "c": ["7702704452248"]}]}, {"id": 16, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 300 hilos 100% algodón Sateen Stripe", "pct": 40, "v": [{"t": "Sencillo", "f": 491295, "d": 294777, "c": ["7702704887811"]}, {"t": "Semidoble", "f": 504945, "d": 302967, "c": ["7702704887828"]}, {"t": "Doble", "f": 516495, "d": 309897, "c": ["7702704887835"]}, {"t": "Extradoble", "f": 526995, "d": 316197, "c": ["7702704887842"]}, {"t": "King", "f": 545895, "d": 327537, "c": ["7702704887859"]}]}, {"id": 17, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 300 hilos 100% algodón flap azul", "pct": 40, "v": [{"t": "Doble", "f": 540645, "d": 324387, "c": ["7702704566181"]}, {"t": "Extradoble", "f": 552195, "d": 331317, "c": ["7702704566211"]}, {"t": "King", "f": 572145, "d": 343287, "c": ["7702704566242"]}]}, {"id": 18, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 300 hilos satín polialgodón", "pct": 40, "v": [{"t": "Sencillo", "f": 403095, "d": 241857, "c": ["7702704452606"]}, {"t": "Semidoble", "f": 425145, "d": 255087, "c": ["7702704452613"]}, {"t": "Doble", "f": 435645, "d": 261387, "c": ["7702704452620"]}, {"t": "Extradoble", "f": 447195, "d": 268317, "c": ["7702704452637"]}, {"t": "King", "f": 462945, "d": 277767, "c": ["7702704452644"]}]}, {"id": 19, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 400 hilos Cairo", "pct": 40, "v": [{"t": "Doble", "f": 597345, "d": 358407, "c": ["7702704491964", "7702704680269", "7702704680252"]}, {"t": "Extradoble", "f": 607845, "d": 364707, "c": ["7702704491995", "7702704680283", "7702704680276"]}, {"t": "King", "f": 624645, "d": 374787, "c": ["7702704492022", "7702704680306", "7702704680290"]}]}, {"id": 20, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 400 hilos Menfis", "pct": 40, "v": [{"t": "Doble", "f": 573195, "d": 343917, "c": ["7702704699360"]}, {"t": "Extradoble", "f": 584745, "d": 350847, "c": ["7702704699384"]}, {"t": "King", "f": 601545, "d": 360927, "c": ["7702704699391"]}]}, {"id": 21, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet HE 400 hilos Menfis Charcoal / Moca", "pct": 40, "v": [{"t": "Doble", "f": 560595, "d": 336357, "c": ["7702704680603", "7702704680597"]}, {"t": "Extradoble", "f": 571095, "d": 342657, "c": ["7702704680627", "7702704680610"]}, {"t": "King", "f": 587895, "d": 352737, "c": ["7702704680634", "7702704680641"]}]}, {"id": 22, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet bambú doblefaz", "pct": 40, "v": [{"t": "Sencillo", "f": 311745, "d": 187047, "c": ["7702704984121"]}, {"t": "Semidoble", "f": 314895, "d": 188937, "c": ["7702704984145"]}, {"t": "Doble", "f": 341145, "d": 204687, "c": ["7702704981489"]}, {"t": "Extradoble", "f": 352695, "d": 211617, "c": ["7702704984169"]}, {"t": "King", "f": 369495, "d": 221697, "c": ["7702704984183"]}]}, {"id": 23, "cat": "Plumones & duvet", "ord": 4, "n": "Duvet 233 hilos 100% algodón con plumas", "pct": 40, "v": [{"t": "Sencillo", "f": 805245, "d": 483147, "c": ["7702704647378"]}, {"t": "Semidoble", "f": 837795, "d": 502677, "c": ["7702704647385"]}, {"t": "Doble", "f": 879795, "d": 527877, "c": ["7702704647392"]}]}, {"id": 24, "cat": "Plumones & duvet", "ord": 4, "n": "Duvet 233 hilos 100% algodón downproof 300 gr", "pct": 40, "v": [{"t": "Sencillo", "f": 577395, "d": 346437, "c": ["7702704647323"]}, {"t": "Semidoble", "f": 607845, "d": 364707, "c": ["7702704647330"]}, {"t": "Doble", "f": 639345, "d": 383607, "c": ["7702704647347"]}, {"t": "Extradoble", "f": 670845, "d": 402507, "c": ["7702704647354"]}]}, {"id": 25, "cat": "Plumones & duvet", "ord": 4, "n": "Plumón HE más volumen 280 gr", "pct": 40, "v": [{"t": "Sencillo", "f": 472395, "d": 283437, "c": ["7702704394227"]}, {"t": "Semidoble", "f": 504945, "d": 302967, "c": ["7702704394258"]}, {"t": "Doble", "f": 538545, "d": 323127, "c": ["7702704394272"]}, {"t": "Extradoble", "f": 571095, "d": 342657, "c": ["7702704394296"]}, {"t": "King", "f": 593145, "d": 355887, "c": ["7702704394319"]}]}, {"id": 26, "cat": "Plumones & duvet", "ord": 4, "n": "Plumón HE ultraliviano downproof", "pct": 40, "v": [{"t": "Sencillo", "f": 370545, "d": 222327, "c": ["7702704393237"]}, {"t": "Semidoble", "f": 404145, "d": 242487, "c": ["7702704393244"]}, {"t": "Doble", "f": 436695, "d": 262017, "c": ["7702704393251"]}, {"t": "Extradoble", "f": 470295, "d": 282177, "c": ["7702704393268"]}, {"t": "King", "f": 502845, "d": 301707, "c": ["7702704393275"]}]}, {"id": 27, "cat": "Quilt & edredón", "ord": 5, "n": "Edredón microfibra 100% poliéster", "pct": 40, "v": [{"t": "Doble", "f": 314895, "d": 188937, "c": ["7702704687527"]}, {"t": "Extradoble", "f": 325395, "d": 195237, "c": ["7702704687541"]}, {"t": "King", "f": 346395, "d": 207837, "c": ["7702704687565"]}]}, {"id": 28, "cat": "Quilt & edredón", "ord": 5, "n": "Quilt apariencia lino 100% algodón", "pct": 40, "v": [{"t": "Doble", "f": 356895, "d": 214137, "c": ["7702704691265", "7702704691203"]}, {"t": "Extradoble", "f": 367395, "d": 220437, "c": ["7702704691272", "7702704691241"]}, {"t": "King", "f": 388395, "d": 233037, "c": ["7702704691289", "7702704691258"]}]}, {"id": 29, "cat": "Quilt & edredón", "ord": 5, "n": "Quilt doblefaz microfibra", "pct": 40, "v": [{"t": "Sencillo", "f": 207795, "d": 124677, "c": ["7702704989959", "7702704978021", "7702704978014"]}, {"t": "Semidoble", "f": 215145, "d": 129087, "c": ["7702704978045", "7702704989966", "7702704978038"]}, {"t": "Doble", "f": 225645, "d": 135387, "c": ["7702704978090", "7702704989973", "7702704978083"]}, {"t": "Extradoble", "f": 236145, "d": 141687, "c": ["7702704989980", "7702704978113", "7702704978106"]}, {"t": "King", "f": 257145, "d": 154287, "c": ["7702704989997", "7702704978137", "7702704978120"]}]}, {"id": 30, "cat": "Protectores colchón", "ord": 6, "n": "Protector colchón Terry Plus impermeable", "pct": 40, "v": [{"t": "Sencillo", "f": 112245, "d": 67347, "c": ["7702704405275"]}, {"t": "Semidoble", "f": 123795, "d": 74277, "c": ["7702704405282"]}, {"t": "Doble", "f": 135345, "d": 81207, "c": ["7702704405299"]}, {"t": "Extradoble", "f": 146895, "d": 88137, "c": ["7702704405305"]}, {"t": "King", "f": 158445, "d": 95067, "c": ["7702704405312"]}]}, {"id": 31, "cat": "Protectores colchón", "ord": 6, "n": "Protector colchón bambú impermeable", "pct": 40, "v": [{"t": "Sencillo", "f": 131145, "d": 78687, "c": ["7702704446360"]}, {"t": "Semidoble", "f": 154245, "d": 92547, "c": ["7702704446384"]}, {"t": "Doble", "f": 177345, "d": 106407, "c": ["7702704446407"]}, {"t": "Extradoble", "f": 200445, "d": 120267, "c": ["7702704446421"]}, {"t": "King", "f": 223545, "d": 134127, "c": ["7702704446445"]}]}, {"id": 32, "cat": "Protectores colchón", "ord": 6, "n": "Protector colchón sensación fría Plus", "pct": 40, "v": [{"t": "Sencillo", "f": 178395, "d": 107037, "c": ["7702704616893"]}, {"t": "Semidoble", "f": 189945, "d": 113967, "c": ["7702704616909"]}, {"t": "Doble", "f": 201495, "d": 120897, "c": ["7702704616916"]}, {"t": "Extradoble", "f": 213045, "d": 127827, "c": ["7702704616923"]}, {"t": "King", "f": 224595, "d": 134757, "c": ["7702704616930"]}]}, {"id": 33, "cat": "Almohadas", "ord": 7, "n": "Almohada HE Quilted medio/firme", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 138495, "d": 83097, "c": ["7702704305919"]}]}, {"id": 34, "cat": "Almohadas", "ord": 7, "n": "Almohada HE sensación plumas", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 141645, "d": 84987, "c": ["7702704623051"]}, {"t": "50 x 90 cm", "f": 152145, "d": 91287, "c": ["7702704996421"]}]}, {"id": 35, "cat": "Almohadas", "ord": 7, "n": "Almohada HE soporte firme", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 165795, "d": 99477, "c": ["7702704626229"]}, {"t": "50 x 90 cm", "f": 187845, "d": 112707, "c": ["7702704626298"]}]}, {"id": 36, "cat": "Almohadas", "ord": 7, "n": "Almohada HE soporte medio", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 154245, "d": 92547, "c": ["7702704626250"]}, {"t": "50 x 90 cm", "f": 165795, "d": 99477, "c": ["7702704626304"]}]}, {"id": 37, "cat": "Almohadas", "ord": 7, "n": "Almohada HE soporte suave", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 141645, "d": 84987, "c": ["7702704623228"]}, {"t": "50 x 90 cm", "f": 152145, "d": 91287, "c": ["7702704626281"]}]}, {"id": 38, "cat": "Almohadas", "ord": 7, "n": "Almohada Ice Memory 60x40x12", "pct": 40, "v": [{"t": "47 x 67 cm", "f": 184695, "d": 110817, "c": ["7702704619689"]}]}, {"id": 39, "cat": "Almohadas", "ord": 7, "n": "Almohada Plus Cervicalm", "pct": 40, "v": [{"t": "47 x 67 cm", "f": 103845, "d": 62307, "c": ["7702704613106"]}]}, {"id": 40, "cat": "Almohadas", "ord": 7, "n": "Protector de almohada Terry Plus", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 46095, "d": 27657, "c": ["7702704394968"]}]}, {"id": 41, "cat": "Almohadas", "ord": 7, "n": "Protector de almohada sensación fría", "pct": 40, "v": [{"t": "47 x 67 cm", "f": 53445, "d": 32067, "c": ["7702704616947"]}]}, {"id": 42, "cat": "Fundas", "ord": 8, "n": "Funda 50X73 150H 50/50 P/A Essencial", "pct": 40, "v": [{"t": null, "f": 22995, "d": 13797, "c": ["7702704458585"]}]}, {"id": 43, "cat": "Fundas", "ord": 8, "n": "Funda 50X73 180H 50/50 P/A Essencial", "pct": 40, "v": [{"t": null, "f": 34545, "d": 20727, "c": ["7702704458646"]}]}, {"id": 44, "cat": "Fundas", "ord": 8, "n": "Setx2 Funda 50X75 400H 100%A Cen Menfis", "pct": 40, "v": [{"t": null, "f": 106995, "d": 64197, "c": ["7702704699568"]}]}, {"id": 45, "cat": "Fundas", "ord": 8, "n": "Setx2 Funda 50X75Cm 300H 40/60 Pa He Sp", "pct": 40, "v": [{"t": null, "f": 60795, "d": 36477, "c": ["7702704951581"]}]}, {"id": 46, "cat": "Fundas", "ord": 8, "n": "Setx2 Funda 50X90 300H 40/60 Pa He Sp Sc", "pct": 40, "v": [{"t": null, "f": 72345, "d": 43407, "c": ["7702704951574"]}]}, {"id": 47, "cat": "Fundas", "ord": 8, "n": "Setx2 Funda 50X90 400H 100%A Cen Menfis", "pct": 40, "v": [{"t": null, "f": 121695, "d": 73017, "c": ["7702704699575"]}]}, {"id": 48, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X70 300H 100%A Ss Cene", "pct": 40, "v": [{"t": null, "f": 87045, "d": 52227, "c": ["7702704566297"]}]}, {"id": 49, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X73 180H Pa Essencial", "pct": 40, "v": [{"t": null, "f": 52395, "d": 31437, "c": ["7702704459124"]}]}, {"id": 50, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X73Cm 150H 50/50 Pa", "pct": 40, "v": [{"t": null, "f": 46095, "d": 27657, "c": ["7702704955985"]}]}, {"id": 51, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X75 400H 100%A Cenefa Ses", "pct": 40, "v": [{"t": null, "f": 92295, "d": 55377, "c": ["7702704996148"]}]}, {"id": 52, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X75 400H 100%A Pliegues", "pct": 40, "v": [{"t": null, "f": 92295, "d": 55377, "c": ["7702704564774", "7702704680184", "7702704680177"]}]}, {"id": 53, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X90 150H 50/50 Pa Dllo10", "pct": 40, "v": [{"t": null, "f": 52395, "d": 31437, "c": ["7702704954568"]}]}, {"id": 54, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X90 300H 100%A Ss Cene", "pct": 40, "v": [{"t": null, "f": 98595, "d": 59157, "c": ["7702704566327"]}]}, {"id": 55, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X90 400H 100%A Cenefa Ses", "pct": 40, "v": [{"t": null, "f": 99645, "d": 59787, "c": ["7702704996223"]}]}, {"id": 56, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X90 400H 100%A Pliegues", "pct": 40, "v": [{"t": null, "f": 103845, "d": 62307, "c": ["7702704564804", "7702704680207", "7702704680191"]}]}, {"id": 57, "cat": "Fundas", "ord": 8, "n": "Setx2Fundas 50X75 150H 50/50Pa Miniprint", "pct": 40, "v": [{"t": null, "f": 46095, "d": 27657, "c": ["7702704954599"]}]}, {"id": 58, "cat": "Toallas", "ord": 9, "n": "Toalla 30Scs 31X32 380G 100%Alg", "pct": 40, "v": [{"t": null, "f": 6195, "d": 3717, "c": ["7702704631452"]}]}, {"id": 59, "cat": "Toallas", "ord": 9, "n": "Toalla 50X90 Thc 78610Classic 700Gr100%A", "pct": 40, "v": [{"t": null, "f": 57645, "d": 34587, "c": ["7702704440283"]}]}, {"id": 60, "cat": "Toallas", "ord": 9, "n": "Toalla 58Ricu 50X80Cm 480Gr 100%Alg", "pct": 40, "v": [{"t": null, "f": 29295, "d": 17577, "c": ["7702704995196"]}]}, {"id": 61, "cat": "Toallas", "ord": 9, "n": "Toalla 70Ricu 70X140Cm 480Gr 100%Alg", "pct": 40, "v": [{"t": null, "f": 75495, "d": 45297, "c": ["7702704995233"]}]}, {"id": 62, "cat": "Toallas", "ord": 9, "n": "Toalla 78X160 Thc 10Classic 700Gr 100%Al", "pct": 40, "v": [{"t": null, "f": 141645, "d": 84987, "c": ["7702704440276"]}]}, {"id": 63, "cat": "Toallas", "ord": 9, "n": "Toalla Malibu 50X90 620Gr 100%Alg", "pct": 40, "v": [{"t": null, "f": 46095, "d": 27657, "c": ["7702704634378"]}]}, {"id": 64, "cat": "Toallas", "ord": 9, "n": "Toalla Malibu 70X140 620Gr 100%Alg", "pct": 40, "v": [{"t": null, "f": 96495, "d": 57897, "c": ["7702704397990"]}]}, {"id": 65, "cat": "Toallas", "ord": 9, "n": "Toalla Solvlux#2 50X70 630Gm Hydra", "pct": 40, "v": [{"t": null, "f": 46095, "d": 27657, "c": ["7702704995356"]}]}, {"id": 66, "cat": "Toallas", "ord": 9, "n": "Toalla Solvlux#2 70X140 630 Gms Hydra", "pct": 40, "v": [{"t": null, "f": 98595, "d": 59157, "c": ["7702704995172"]}]}, {"id": 67, "cat": "Cobijas", "ord": 10, "n": "Cob Flanne Chevron 140X200 100%Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 110145, "d": 66087, "c": ["7702704638581"]}]}, {"id": 68, "cat": "Cobijas", "ord": 10, "n": "Cob Flanne Chevron 180X200 100%Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 125895, "d": 75537, "c": ["7702704638611", "7702704638628", "7702704638604"]}]}, {"id": 69, "cat": "Cobijas", "ord": 10, "n": "Cob Flanne Chevron 220X220 100%Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 146895, "d": 88137, "c": ["7702704638659", "7702704638635"]}]}, {"id": 70, "cat": "Cobijas", "ord": 10, "n": "Cob Flannel Jacq Bee 140X200 100%P 280Gr", "pct": 40, "v": [{"t": null, "f": 150045, "d": 90027, "c": ["7702704438204"]}]}, {"id": 71, "cat": "Cobijas", "ord": 10, "n": "Cob Flannel Jacq Bee 180X220 100%P 280Gr", "pct": 40, "v": [{"t": null, "f": 173145, "d": 103887, "c": ["7702704438235"]}]}, {"id": 72, "cat": "Cobijas", "ord": 10, "n": "Cob Flannel Jacq Bee 220X220 100%P 280Gr", "pct": 40, "v": [{"t": null, "f": 196245, "d": 117747, "c": ["7702704438266"]}]}, {"id": 73, "cat": "Cobijas", "ord": 10, "n": "Cobija Flannel Ribbed 220X220 Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 157395, "d": 94437, "c": ["7702704944668", "7702704944675"]}]}, {"id": 74, "cat": "Cobijas", "ord": 10, "n": "Cobija Flannel Ribbed180X200 Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 136395, "d": 81837, "c": ["7702704944637", "7702704944644"]}]}, {"id": 75, "cat": "Fragancias & kits", "ord": 11, "n": "Difusor Varas Rattan Loft Ambar 50Ml", "pct": 40, "v": [{"t": null, "f": 96910, "d": 58146, "c": ["7702704647583"]}]}, {"id": 76, "cat": "Fragancias & kits", "ord": 11, "n": "Fragancia Agua Linos Calma Primav 110Ml", "pct": 40, "v": [{"t": null, "f": 46195, "d": 27717, "c": ["7702704577323"]}]}, {"id": 77, "cat": "Fragancias & kits", "ord": 11, "n": "Fragancia Bruma Calma Primaveral 135Ml", "pct": 40, "v": [{"t": null, "f": 36272, "d": 21763, "c": ["7702704529735"]}]}, {"id": 78, "cat": "Fragancias & kits", "ord": 11, "n": "Fragancia Cbd Therapy 210Ml", "pct": 40, "v": [{"t": null, "f": 58322, "d": 34993, "c": ["7702704620296"]}]}, {"id": 79, "cat": "Fragancias & kits", "ord": 11, "n": "Fragancia Linos Loft 250Ml", "pct": 40, "v": [{"t": null, "f": 91397, "d": 54838, "c": ["7702704647569"]}]}, {"id": 80, "cat": "Fragancias & kits", "ord": 11, "n": "Jabon Liquido Calma Primaveral 250Ml", "pct": 40, "v": [{"t": null, "f": 46195, "d": 27717, "c": ["7702704498888"]}]}, {"id": 81, "cat": "Fragancias & kits", "ord": 11, "n": "Kit Aceite Corp 110Ml+Agua Linos 135Ml F", "pct": 40, "v": [{"t": null, "f": 82845, "d": 49707, "c": ["7702704615957"]}]}, {"id": 82, "cat": "Fragancias & kits", "ord": 11, "n": "Kit Calma Primaveral Bruma+Frag+Jabon Li", "pct": 40, "v": [{"t": null, "f": 121695, "d": 73017, "c": ["7702704577347"]}]}, {"id": 83, "cat": "Fragancias & kits", "ord": 11, "n": "Kit Hotel Experience Fragancia + Vela", "pct": 40, "v": [{"t": null, "f": 188894, "d": 113336, "c": ["7702704993420"]}]}, {"id": 84, "cat": "Fragancias & kits", "ord": 11, "n": "Perfume Linos He Ambar 250Ml", "pct": 40, "v": [{"t": null, "f": 104627, "d": 62776, "c": ["7702704647538"]}]}];
+
+const norm = s => (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
+const money = n => '$'+Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+const esc = s => (s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+PRODUCTS.forEach(p=>{
+  p._name = norm(p.n+' '+p.cat);
+  p._codes = p.v.flatMap(v=>v.c);
+  p._codeblob = p._codes.join(' ');
+  p._min = Math.min.apply(null, p.v.map(v=>v.d));
+});
+const TOTAL_CODES = new Set(PRODUCTS.flatMap(p=>p._codes)).size;
+
+const CATS=[]; const seen={};
+PRODUCTS.slice().sort((a,b)=>a.ord-b.ord).forEach(p=>{ if(!seen[p.cat]){seen[p.cat]=1;CATS.push({cat:p.cat,n:PRODUCTS.filter(x=>x.cat===p.cat).length});} });
+
+let activeCat='Todos', query='';
+
+const tokens = q => norm(q).split(' ').filter(Boolean);
+const matches = (p,t) => t.every(x => p._name.includes(x) || p._codeblob.includes(x));
+
+function hlName(raw,t){
+  let out=esc(raw);
+  const w=t.filter(x=>x.length>=2).map(x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+  if(w.length){ try{ out=out.replace(new RegExp('('+w.join('|')+')','gi'),'<mark>$1</mark>'); }catch(e){} }
+  return out;
+}
+function hlCode(code,t){
+  const d=t.filter(x=>/\d/.test(x)).sort((a,b)=>b.length-a.length)[0];
+  if(d){ try{ return esc(code).replace(new RegExp('('+d.replace(/[^0-9]/g,'')+')','g'),'<mark>$1</mark>'); }catch(e){} }
+  return esc(code);
+}
+
+const copyIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>';
+let toastTimer;
+function toast(msg){const t=document.getElementById('toast');document.getElementById('toast-t').textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1500);}
+function copyCode(code){const done=()=>toast('Código '+code+' copiado');if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code).then(done).catch(()=>fallback(code,done));}else fallback(code,done);}
+function fallback(code,done){const ta=document.createElement('textarea');ta.value=code;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');done();}catch(e){toast('No se pudo copiar');}document.body.removeChild(ta);}
+
+function buildChips(){
+  const wrap=document.getElementById('chips');
+  const all=[{cat:'Todos',n:PRODUCTS.length}].concat(CATS);
+  wrap.innerHTML=all.map(c=>`<button class="chip${c.cat===activeCat?' active':''}" data-cat="${esc(c.cat)}">${esc(c.cat)}<span class="c">${c.n}</span></button>`).join('');
+  wrap.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{activeCat=b.dataset.cat;buildChips();render();document.getElementById('list').scrollIntoView({block:'start',behavior:'auto'});}));
+}
+
+function rowHTML(v,t){
+  const pct=Math.round((1 - v.d/v.f)*100);
+  const save=v.f - v.d;
+  const size = v.t ? `<span class="size">${esc(v.t)}</span>` : '';
+  const codes = v.c.map(c=>`<button class="code" data-c="${esc(c)}">${copyIcon}<span>${hlCode(c,t)}</span></button>`).join('');
+  return `<div class="row">
+    <span class="badge">−${pct}%</span>
+    ${size}
+    <div class="prices">
+      <span class="nlab">Ahora</span><span class="now">${money(v.d)}</span>
+      <span class="meta2"><span class="was"><i>antes</i>${money(v.f)}</span><span class="dot">·</span><span class="save">ahorras ${money(save)}</span></span>
+    </div>
+    <div class="codes"><span class="clab">Código${v.c.length>1?'s':''}</span>${codes}</div>
+  </div>`;
+}
+function cardHTML(p,t){
+  const range = p.v.length>1 ? `<span class="range"><i>desde</i>${money(p._min)}</span>` : '';
+  return `<article class="card">
+    <div class="chead"><span class="cat">${esc(p.cat)}</span>${range}</div>
+    <h2 class="name">${hlName(p.n,t)}</h2>
+    <div class="rows">${p.v.map(v=>rowHTML(v,t)).join('')}</div>
+  </article>`;
+}
+function render(){
+  const t=tokens(query);
+  let list=PRODUCTS;
+  if(activeCat!=='Todos') list=list.filter(p=>p.cat===activeCat);
+  if(t.length) list=list.filter(p=>matches(p,t));
+  list=list.slice().sort((a,b)=>a.ord-b.ord || a.id-b.id);
+
+  const refs=list.reduce((s,p)=>s+p._codes.length,0);
+  document.getElementById('meta').innerHTML=`<b>${list.length}</b> producto${list.length===1?'':'s'} · <b>${refs}</b> referencia${refs===1?'':'s'}`;
+
+  const listEl=document.getElementById('list'), emptyEl=document.getElementById('empty');
+  if(!list.length){listEl.innerHTML='';emptyEl.hidden=false;return;}
+  emptyEl.hidden=true;
+  listEl.innerHTML=list.map(p=>cardHTML(p,t)).join('');
+}
+
+const input=document.getElementById('q'), clearBtn=document.getElementById('clear');
+let raf;
+input.addEventListener('input',e=>{query=e.target.value;clearBtn.classList.toggle('on',!!query);cancelAnimationFrame(raf);raf=requestAnimationFrame(render);});
+clearBtn.addEventListener('click',()=>{query='';input.value='';clearBtn.classList.remove('on');input.focus();render();});
+document.getElementById('list').addEventListener('click',e=>{const b=e.target.closest('.code');if(b)copyCode(b.dataset.c);});
+document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==input){e.preventDefault();input.focus();}if(e.key==='Escape'&&query){query='';input.value='';clearBtn.classList.remove('on');render();}});
+
+document.querySelector('.brand .tag').textContent=`${PRODUCTS.length} productos · ${TOTAL_CODES} códigos · toca un código para copiarlo`;
+buildChips();
+render();
+if(window.matchMedia && window.matchMedia('(pointer:fine)').matches){ input.focus(); }
+</script>
+</body>
+</html>
