@@ -127,6 +127,69 @@ body{
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 #toast svg{width:16px;height:16px;color:var(--teal)}
 
+/* ---------- Help button ---------- */
+.htop{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.help-btn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--surface);
+  color:var(--teal-deep);font-family:inherit;font-size:12.5px;font-weight:800;padding:7px 12px;border-radius:999px;
+  cursor:pointer;box-shadow:var(--shadow);white-space:nowrap}
+.help-btn svg{width:14px;height:14px}
+.help-btn:active{transform:scale(.97)}
+
+/* ---------- Tutorial / onboarding ---------- */
+.tut{position:fixed;inset:0;z-index:200;background:rgba(15,22,20,.55);
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+  display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+@media (min-width:560px){.tut{align-items:center}}
+.tut.show{opacity:1;pointer-events:auto}
+.tut-card{position:relative;width:100%;max-width:440px;background:var(--surface);
+  border-radius:24px 24px 0 0;padding:22px 18px calc(18px + var(--safe-b));
+  box-shadow:0 -12px 44px rgba(0,0,0,.28);transform:translateY(28px);transition:transform .32s cubic-bezier(.2,.7,.2,1)}
+@media (min-width:560px){.tut-card{border-radius:24px;transform:scale(.96)}}
+.tut.show .tut-card{transform:none}
+.tut-skip{position:absolute;top:15px;right:15px;width:32px;height:32px;border:none;border-radius:50%;
+  background:var(--surface-2);color:var(--ink-soft);font-size:15px;cursor:pointer;z-index:2}
+.tut-skip:active{background:#e7ecea}
+.tut-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;
+  color:var(--teal-deep);background:var(--teal-wash);padding:5px 11px;border-radius:999px;margin-bottom:15px}
+.tut-viewport{overflow:hidden}
+.tut-track{display:flex;transition:transform .32s cubic-bezier(.2,.7,.2,1)}
+.tut-slide{flex:0 0 100%;padding:2px}
+.tut-slide h3{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;margin:16px 0 6px;color:var(--ink)}
+.tut-slide p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+.tut-slide p b{color:var(--ink);font-weight:800}
+.tut-dots{display:flex;justify-content:center;gap:7px;margin:18px 0 14px}
+.tut-dot{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .2s,width .2s}
+.tut-dot.on{background:var(--teal-deep);width:20px;border-radius:999px}
+.tut-actions{display:flex;gap:10px}
+.tut-prev{flex:0 0 auto;height:48px;padding:0 18px;border-radius:13px;border:1.5px solid var(--line);
+  background:var(--surface);color:var(--ink-soft);font-family:inherit;font-size:15px;font-weight:800;cursor:pointer}
+.tut-next{flex:1;height:48px;border:none;border-radius:13px;background:var(--teal-deep);color:#fff;
+  font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(10,116,106,.3)}
+.tut-next:active,.tut-prev:active{transform:scale(.98)}
+/* tutorial mock visuals */
+.mock{background:var(--surface-2);border:1px solid var(--line);border-radius:16px;padding:16px;min-height:118px;
+  display:flex;flex-direction:column;justify-content:center;gap:11px}
+.m-search{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--teal);border-radius:12px;
+  padding:13px 14px;box-shadow:0 0 0 4px rgba(0,191,179,.12)}
+.m-search svg{width:18px;height:18px;color:var(--ink-faint);flex:0 0 auto}
+.m-ph{font-weight:700;color:var(--ink)}
+.m-hint{font-size:12px;color:var(--ink-faint);font-weight:600;text-align:center}
+.m-chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.m-chip{font-size:12.5px;font-weight:700;padding:7px 12px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--ink-soft)}
+.m-chip.on{background:var(--teal-deep);color:#fff;border-color:var(--teal-deep)}
+.m-row{position:relative;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+.m-size{display:inline-block;font-size:12px;font-weight:800;color:var(--teal-deep);background:var(--teal-wash);padding:4px 10px;border-radius:8px;margin-bottom:8px}
+.m-badge{position:absolute;top:12px;right:12px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:var(--amber);background:var(--amber-wash);padding:4px 8px;border-radius:8px}
+.m-prices{display:flex;align-items:baseline;gap:8px}
+.m-nlab{font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--ink-faint)}
+.m-now{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:var(--teal-deep);font-variant-numeric:tabular-nums}
+.m-was{margin-top:5px;font-size:12.5px;color:var(--was);font-variant-numeric:tabular-nums}
+.m-was s{color:var(--was)} .m-was b{color:var(--amber);font-weight:800}
+.m-code{display:inline-flex;align-items:center;gap:8px;align-self:center;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--ink);background:#fff;border:1px solid var(--teal);padding:11px 14px;border-radius:11px;box-shadow:0 0 0 4px rgba(0,191,179,.12);font-variant-numeric:tabular-nums}
+.m-code svg{width:15px;height:15px;color:var(--teal-deep);flex:0 0 auto}
+.m-toast{align-self:center;display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:#fff;font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:999px}
+.m-toast svg{width:14px;height:14px;color:var(--teal);flex:0 0 auto}
+
 @keyframes rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.card{animation:none}*{transition:none!important}}
 </style>
@@ -134,7 +197,10 @@ body{
 <body>
 <div class="app">
   <header class="brand">
-    <div class="cobrand"><span class="jt">job&amp;talent</span><span class="x">×</span><span class="dh">Distrihogar</span></div>
+    <div class="htop">
+      <div class="cobrand"><span class="jt">job&amp;talent</span><span class="x">×</span><span class="dh">Distrihogar</span></div>
+      <button id="help" class="help-btn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"></circle><path d="M9.6 9.2a2.4 2.4 0 1 1 3.2 2.3c-.7.3-1.3.9-1.3 1.8v.4"></path><circle cx="11.9" cy="17" r="0.6" fill="currentColor" stroke="none"></circle></svg>¿Cómo usar?</button>
+    </div>
     <h1>Feria del Hogar</h1>
     <p class="tag">Precios oficiales · toca un código para copiarlo</p>
   </header>
@@ -158,6 +224,63 @@ body{
 </div>
 
 <div id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg><span id="toast-t">Código copiado</span></div>
+
+<div id="tut" class="tut" aria-hidden="true">
+  <div class="tut-card" role="dialog" aria-modal="true" aria-label="Cómo usar la herramienta">
+    <button id="tut-skip" class="tut-skip" type="button" aria-label="Cerrar">✕</button>
+    <span class="tut-badge">Guía rápida · 30 seg</span>
+    <div class="tut-viewport">
+      <div id="tut-track" class="tut-track">
+
+        <div class="tut-slide">
+          <div class="mock">
+            <div class="m-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg><span class="m-ph">colchon</span></div>
+            <div class="m-hint">sin tildes · varias palabras</div>
+          </div>
+          <h3>1. Busca lo que sea</h3>
+          <p>Escribe el <b>nombre</b> o el <b>código de barras</b>. No importan las tildes y puedes usar varias palabras, como “menfis 400”.</p>
+        </div>
+
+        <div class="tut-slide">
+          <div class="mock">
+            <div class="m-chips"><span class="m-chip on">Todos</span><span class="m-chip">Toallas</span><span class="m-chip">Almohadas</span><span class="m-chip">Cobijas</span></div>
+            <div class="m-hint">desliza y toca una categoría</div>
+          </div>
+          <h3>2. Filtra por categoría</h3>
+          <p>Arriba están las categorías. <b>Deslízalas</b> con el dedo y toca una para ver solo esos productos.</p>
+        </div>
+
+        <div class="tut-slide">
+          <div class="mock">
+            <div class="m-row">
+              <span class="m-badge">−40%</span>
+              <span class="m-size">Doble</span>
+              <div class="m-prices"><span class="m-nlab">Ahora</span><span class="m-now">$131.607</span></div>
+              <div class="m-was">antes <s>$219.345</s> · <b>ahorras $87.738</b></div>
+            </div>
+          </div>
+          <h3>3. Precio por talla, clarito</h3>
+          <p>Cada talla muestra el <b>precio de ahora</b>, el de <b>antes</b> tachado y <b>cuánto ahorra</b> el cliente.</p>
+        </div>
+
+        <div class="tut-slide">
+          <div class="mock">
+            <div class="m-code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>7702704594627</div>
+            <div class="m-toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>Código copiado</div>
+          </div>
+          <h3>4. Copia el código</h3>
+          <p><b>Toca el código</b> y se copia solo, listo para pegarlo en la factura o donde lo necesites.</p>
+        </div>
+
+      </div>
+    </div>
+    <div id="tut-dots" class="tut-dots"></div>
+    <div class="tut-actions">
+      <button id="tut-prev" class="tut-prev" type="button">Atrás</button>
+      <button id="tut-next" class="tut-next" type="button">Siguiente</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const PRODUCTS = [{"id": 0, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 150 hilos polialgodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 156345, "d": 93807, "c": ["7702704594627"]}, {"t": "Semidoble", "f": 179445, "d": 107667, "c": ["7702704594672"]}, {"t": "Extradoble", "f": 202545, "d": 121527, "c": ["7702704594733"]}, {"t": "King", "f": 219345, "d": 131607, "c": ["7702704594764"]}]}, {"id": 1, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 180 hilos polialgodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 184695, "d": 110817, "c": ["7702704594818"]}, {"t": "Semidoble", "f": 207795, "d": 124677, "c": ["7702704594849"]}, {"t": "Doble", "f": 219345, "d": 131607, "c": ["7702704594894"]}, {"t": "Extradoble", "f": 230895, "d": 138537, "c": ["7702704594948"]}, {"t": "King", "f": 242445, "d": 145467, "c": ["7702704594993"]}]}, {"id": 2, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 300 hilos 100% algodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 324345, "d": 194607, "c": ["7702704595662", "7702704595587", "7702704595655", "7702704595648"]}, {"t": "Semidoble", "f": 346395, "d": 207837, "c": ["7702704595730", "7702704595723", "7702704595747", "7702704595754"]}, {"t": "Doble", "f": 357945, "d": 214767, "c": ["7702704595822", "7702704595815", "7702704595839", "7702704595846"]}, {"t": "Extradoble", "f": 368445, "d": 221067, "c": ["7702704595914", "7702704595907", "7702704595921", "7702704595938"]}, {"t": "King", "f": 385245, "d": 231147, "c": ["7702704596003", "7702704595990", "7702704596010", "7702704596027"]}]}, {"id": 3, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 400 hilos 100% algodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 382095, "d": 229257, "c": ["7702704596058", "7702704680498", "7702704680481"]}, {"t": "Semidoble", "f": 404145, "d": 242487, "c": ["7702704596096", "7702704680511", "7702704680504"]}, {"t": "Doble", "f": 414645, "d": 248787, "c": ["7702704596133", "7702704680535", "7702704680528"]}, {"t": "Extradoble", "f": 426195, "d": 255717, "c": ["7702704596171", "7702704680559", "7702704680542"]}, {"t": "King", "f": 440895, "d": 264537, "c": ["7702704596218", "7702704680573", "7702704680566"]}]}, {"id": 4, "cat": "Semijuegos", "ord": 1, "n": "Semijuego 400 hilos Menfis (E12521)", "pct": 40, "v": [{"t": "Sencillo", "f": 400995, "d": 240597, "c": ["7702704699438"]}, {"t": "Semidoble", "f": 423045, "d": 253827, "c": ["7702704699469"]}, {"t": "Doble", "f": 433545, "d": 260127, "c": ["7702704699483"]}, {"t": "Extradoble", "f": 445095, "d": 267057, "c": ["7702704699490"]}, {"t": "King", "f": 460845, "d": 276507, "c": ["7702704699506"]}]}, {"id": 5, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 300 hilos 100% algodón Cagliari", "pct": 40, "v": [{"t": "Doble", "f": 419895, "d": 251937, "c": ["7702704996711"]}, {"t": "Extradoble", "f": 430395, "d": 258237, "c": ["7702704996742"]}, {"t": "King", "f": 446145, "d": 267687, "c": ["7702704996797"]}]}, {"id": 6, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 300 hilos 100% algodón Sateen Stripe", "pct": 40, "v": [{"t": "Doble", "f": 472395, "d": 283437, "c": ["7702704566112"]}, {"t": "Extradoble", "f": 482895, "d": 289737, "c": ["7702704566143"]}, {"t": "King", "f": 499695, "d": 299817, "c": ["7702704566174"]}]}, {"id": 7, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 300 hilos Coastal", "pct": 40, "v": [{"t": "Doble", "f": 496545, "d": 297927, "c": ["7702704972890"]}, {"t": "Extradoble", "f": 507045, "d": 304227, "c": ["7702704972906"]}, {"t": "King", "f": 523845, "d": 314307, "c": ["7702704972913"]}]}, {"id": 8, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 300 hilos cenefa lino (Legacy)", "pct": 40, "v": [{"t": "Doble", "f": 451395, "d": 270837, "c": ["7702704675470"]}, {"t": "Extradoble", "f": 461895, "d": 277137, "c": ["7702704675487"]}, {"t": "King", "f": 482895, "d": 289737, "c": ["7702704675494"]}]}, {"id": 9, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 400 hilos Cairo", "pct": 40, "v": [{"t": "Doble", "f": 648795, "d": 389277, "c": ["7702704699582"]}, {"t": "Extradoble", "f": 659295, "d": 395577, "c": ["7702704699599"]}, {"t": "King", "f": 678195, "d": 406917, "c": ["7702704699605"]}]}, {"id": 10, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 400 hilos Menfis", "pct": 40, "v": [{"t": "Doble", "f": 598395, "d": 359037, "c": ["7702704699339"]}, {"t": "Extradoble", "f": 608895, "d": 365337, "c": ["7702704699346"]}, {"t": "King", "f": 625695, "d": 375417, "c": ["7702704699353"]}]}, {"id": 11, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama 400 hilos Menfis Charcoal / Moca", "pct": 40, "v": [{"t": "Doble", "f": 593145, "d": 355887, "c": ["7702704680320", "7702704680313"]}, {"t": "Extradoble", "f": 604695, "d": 362817, "c": ["7702704680344", "7702704680337"]}, {"t": "King", "f": 621495, "d": 372897, "c": ["7702704680368", "7702704680351"]}]}, {"id": 12, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama HE 300 hilos polialgodón cenefa", "pct": 40, "v": [{"t": "Sencillo", "f": 335895, "d": 201537, "c": ["7702704439454"]}, {"t": "Semidoble", "f": 346395, "d": 207837, "c": ["7702704439461"]}, {"t": "Doble", "f": 356895, "d": 214137, "c": ["7702704439478"]}, {"t": "Extradoble", "f": 367395, "d": 220437, "c": ["7702704439485"]}, {"t": "King", "f": 388395, "d": 233037, "c": ["7702704439492"]}]}, {"id": 13, "cat": "Juegos de cama", "ord": 2, "n": "Juego de cama HE 400 hilos Cairo Charcoal / Moca", "pct": 40, "v": [{"t": "Doble", "f": 629895, "d": 377937, "c": ["7702704680122", "7702704680115"]}, {"t": "Extradoble", "f": 641445, "d": 384867, "c": ["7702704680146", "7702704680139"]}, {"t": "King", "f": 657195, "d": 394317, "c": ["7702704680160", "7702704680153"]}]}, {"id": 14, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 180 hilos Essencial", "pct": 40, "v": [{"t": "Sencillo", "f": 306495, "d": 183897, "c": ["7702704435623"]}, {"t": "Semidoble", "f": 322245, "d": 193347, "c": ["7702704435630"]}, {"t": "Doble", "f": 333795, "d": 200277, "c": ["7702704435678"]}, {"t": "Extradoble", "f": 345345, "d": 207207, "c": ["7702704435715"]}, {"t": "King", "f": 385245, "d": 231147, "c": ["7702704435753"]}]}, {"id": 15, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 250 hilos HE Sateen Stripe", "pct": 40, "v": [{"t": "Sencillo", "f": 403095, "d": 241857, "c": ["7702704452200"]}, {"t": "Extradoble", "f": 447195, "d": 268317, "c": ["7702704452231"]}, {"t": "King", "f": 462945, "d": 277767, "c": ["7702704452248"]}]}, {"id": 16, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 300 hilos 100% algodón Sateen Stripe", "pct": 40, "v": [{"t": "Sencillo", "f": 491295, "d": 294777, "c": ["7702704887811"]}, {"t": "Semidoble", "f": 504945, "d": 302967, "c": ["7702704887828"]}, {"t": "Doble", "f": 516495, "d": 309897, "c": ["7702704887835"]}, {"t": "Extradoble", "f": 526995, "d": 316197, "c": ["7702704887842"]}, {"t": "King", "f": 545895, "d": 327537, "c": ["7702704887859"]}]}, {"id": 17, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 300 hilos 100% algodón flap azul", "pct": 40, "v": [{"t": "Doble", "f": 540645, "d": 324387, "c": ["7702704566181"]}, {"t": "Extradoble", "f": 552195, "d": 331317, "c": ["7702704566211"]}, {"t": "King", "f": 572145, "d": 343287, "c": ["7702704566242"]}]}, {"id": 18, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 300 hilos satín polialgodón", "pct": 40, "v": [{"t": "Sencillo", "f": 403095, "d": 241857, "c": ["7702704452606"]}, {"t": "Semidoble", "f": 425145, "d": 255087, "c": ["7702704452613"]}, {"t": "Doble", "f": 435645, "d": 261387, "c": ["7702704452620"]}, {"t": "Extradoble", "f": 447195, "d": 268317, "c": ["7702704452637"]}, {"t": "King", "f": 462945, "d": 277767, "c": ["7702704452644"]}]}, {"id": 19, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 400 hilos Cairo", "pct": 40, "v": [{"t": "Doble", "f": 597345, "d": 358407, "c": ["7702704491964", "7702704680269", "7702704680252"]}, {"t": "Extradoble", "f": 607845, "d": 364707, "c": ["7702704491995", "7702704680283", "7702704680276"]}, {"t": "King", "f": 624645, "d": 374787, "c": ["7702704492022", "7702704680306", "7702704680290"]}]}, {"id": 20, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet 400 hilos Menfis", "pct": 40, "v": [{"t": "Doble", "f": 573195, "d": 343917, "c": ["7702704699360"]}, {"t": "Extradoble", "f": 584745, "d": 350847, "c": ["7702704699384"]}, {"t": "King", "f": 601545, "d": 360927, "c": ["7702704699391"]}]}, {"id": 21, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet HE 400 hilos Menfis Charcoal / Moca", "pct": 40, "v": [{"t": "Doble", "f": 560595, "d": 336357, "c": ["7702704680603", "7702704680597"]}, {"t": "Extradoble", "f": 571095, "d": 342657, "c": ["7702704680627", "7702704680610"]}, {"t": "King", "f": 587895, "d": 352737, "c": ["7702704680634", "7702704680641"]}]}, {"id": 22, "cat": "Cover duvet", "ord": 3, "n": "Cover duvet bambú doblefaz", "pct": 40, "v": [{"t": "Sencillo", "f": 311745, "d": 187047, "c": ["7702704984121"]}, {"t": "Semidoble", "f": 314895, "d": 188937, "c": ["7702704984145"]}, {"t": "Doble", "f": 341145, "d": 204687, "c": ["7702704981489"]}, {"t": "Extradoble", "f": 352695, "d": 211617, "c": ["7702704984169"]}, {"t": "King", "f": 369495, "d": 221697, "c": ["7702704984183"]}]}, {"id": 23, "cat": "Plumones & duvet", "ord": 4, "n": "Duvet 233 hilos 100% algodón con plumas", "pct": 40, "v": [{"t": "Sencillo", "f": 805245, "d": 483147, "c": ["7702704647378"]}, {"t": "Semidoble", "f": 837795, "d": 502677, "c": ["7702704647385"]}, {"t": "Doble", "f": 879795, "d": 527877, "c": ["7702704647392"]}]}, {"id": 24, "cat": "Plumones & duvet", "ord": 4, "n": "Duvet 233 hilos 100% algodón downproof 300 gr", "pct": 40, "v": [{"t": "Sencillo", "f": 577395, "d": 346437, "c": ["7702704647323"]}, {"t": "Semidoble", "f": 607845, "d": 364707, "c": ["7702704647330"]}, {"t": "Doble", "f": 639345, "d": 383607, "c": ["7702704647347"]}, {"t": "Extradoble", "f": 670845, "d": 402507, "c": ["7702704647354"]}]}, {"id": 25, "cat": "Plumones & duvet", "ord": 4, "n": "Plumón HE más volumen 280 gr", "pct": 40, "v": [{"t": "Sencillo", "f": 472395, "d": 283437, "c": ["7702704394227"]}, {"t": "Semidoble", "f": 504945, "d": 302967, "c": ["7702704394258"]}, {"t": "Doble", "f": 538545, "d": 323127, "c": ["7702704394272"]}, {"t": "Extradoble", "f": 571095, "d": 342657, "c": ["7702704394296"]}, {"t": "King", "f": 593145, "d": 355887, "c": ["7702704394319"]}]}, {"id": 26, "cat": "Plumones & duvet", "ord": 4, "n": "Plumón HE ultraliviano downproof", "pct": 40, "v": [{"t": "Sencillo", "f": 370545, "d": 222327, "c": ["7702704393237"]}, {"t": "Semidoble", "f": 404145, "d": 242487, "c": ["7702704393244"]}, {"t": "Doble", "f": 436695, "d": 262017, "c": ["7702704393251"]}, {"t": "Extradoble", "f": 470295, "d": 282177, "c": ["7702704393268"]}, {"t": "King", "f": 502845, "d": 301707, "c": ["7702704393275"]}]}, {"id": 27, "cat": "Quilt & edredón", "ord": 5, "n": "Edredón microfibra 100% poliéster", "pct": 40, "v": [{"t": "Doble", "f": 314895, "d": 188937, "c": ["7702704687527"]}, {"t": "Extradoble", "f": 325395, "d": 195237, "c": ["7702704687541"]}, {"t": "King", "f": 346395, "d": 207837, "c": ["7702704687565"]}]}, {"id": 28, "cat": "Quilt & edredón", "ord": 5, "n": "Quilt apariencia lino 100% algodón", "pct": 40, "v": [{"t": "Doble", "f": 356895, "d": 214137, "c": ["7702704691265", "7702704691203"]}, {"t": "Extradoble", "f": 367395, "d": 220437, "c": ["7702704691272", "7702704691241"]}, {"t": "King", "f": 388395, "d": 233037, "c": ["7702704691289", "7702704691258"]}]}, {"id": 29, "cat": "Quilt & edredón", "ord": 5, "n": "Quilt doblefaz microfibra", "pct": 40, "v": [{"t": "Sencillo", "f": 207795, "d": 124677, "c": ["7702704989959", "7702704978021", "7702704978014"]}, {"t": "Semidoble", "f": 215145, "d": 129087, "c": ["7702704978045", "7702704989966", "7702704978038"]}, {"t": "Doble", "f": 225645, "d": 135387, "c": ["7702704978090", "7702704989973", "7702704978083"]}, {"t": "Extradoble", "f": 236145, "d": 141687, "c": ["7702704989980", "7702704978113", "7702704978106"]}, {"t": "King", "f": 257145, "d": 154287, "c": ["7702704989997", "7702704978137", "7702704978120"]}]}, {"id": 30, "cat": "Protectores colchón", "ord": 6, "n": "Protector colchón Terry Plus impermeable", "pct": 40, "v": [{"t": "Sencillo", "f": 112245, "d": 67347, "c": ["7702704405275"]}, {"t": "Semidoble", "f": 123795, "d": 74277, "c": ["7702704405282"]}, {"t": "Doble", "f": 135345, "d": 81207, "c": ["7702704405299"]}, {"t": "Extradoble", "f": 146895, "d": 88137, "c": ["7702704405305"]}, {"t": "King", "f": 158445, "d": 95067, "c": ["7702704405312"]}]}, {"id": 31, "cat": "Protectores colchón", "ord": 6, "n": "Protector colchón bambú impermeable", "pct": 40, "v": [{"t": "Sencillo", "f": 131145, "d": 78687, "c": ["7702704446360"]}, {"t": "Semidoble", "f": 154245, "d": 92547, "c": ["7702704446384"]}, {"t": "Doble", "f": 177345, "d": 106407, "c": ["7702704446407"]}, {"t": "Extradoble", "f": 200445, "d": 120267, "c": ["7702704446421"]}, {"t": "King", "f": 223545, "d": 134127, "c": ["7702704446445"]}]}, {"id": 32, "cat": "Protectores colchón", "ord": 6, "n": "Protector colchón sensación fría Plus", "pct": 40, "v": [{"t": "Sencillo", "f": 178395, "d": 107037, "c": ["7702704616893"]}, {"t": "Semidoble", "f": 189945, "d": 113967, "c": ["7702704616909"]}, {"t": "Doble", "f": 201495, "d": 120897, "c": ["7702704616916"]}, {"t": "Extradoble", "f": 213045, "d": 127827, "c": ["7702704616923"]}, {"t": "King", "f": 224595, "d": 134757, "c": ["7702704616930"]}]}, {"id": 33, "cat": "Almohadas", "ord": 7, "n": "Almohada HE Quilted medio/firme", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 138495, "d": 83097, "c": ["7702704305919"]}]}, {"id": 34, "cat": "Almohadas", "ord": 7, "n": "Almohada HE sensación plumas", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 141645, "d": 84987, "c": ["7702704623051"]}, {"t": "50 x 90 cm", "f": 152145, "d": 91287, "c": ["7702704996421"]}]}, {"id": 35, "cat": "Almohadas", "ord": 7, "n": "Almohada HE soporte firme", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 165795, "d": 99477, "c": ["7702704626229"]}, {"t": "50 x 90 cm", "f": 187845, "d": 112707, "c": ["7702704626298"]}]}, {"id": 36, "cat": "Almohadas", "ord": 7, "n": "Almohada HE soporte medio", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 154245, "d": 92547, "c": ["7702704626250"]}, {"t": "50 x 90 cm", "f": 165795, "d": 99477, "c": ["7702704626304"]}]}, {"id": 37, "cat": "Almohadas", "ord": 7, "n": "Almohada HE soporte suave", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 141645, "d": 84987, "c": ["7702704623228"]}, {"t": "50 x 90 cm", "f": 152145, "d": 91287, "c": ["7702704626281"]}]}, {"id": 38, "cat": "Almohadas", "ord": 7, "n": "Almohada Ice Memory 60x40x12", "pct": 40, "v": [{"t": "47 x 67 cm", "f": 184695, "d": 110817, "c": ["7702704619689"]}]}, {"id": 39, "cat": "Almohadas", "ord": 7, "n": "Almohada Plus Cervicalm", "pct": 40, "v": [{"t": "47 x 67 cm", "f": 103845, "d": 62307, "c": ["7702704613106"]}]}, {"id": 40, "cat": "Almohadas", "ord": 7, "n": "Protector de almohada Terry Plus", "pct": 40, "v": [{"t": "50 x 70 cm", "f": 46095, "d": 27657, "c": ["7702704394968"]}]}, {"id": 41, "cat": "Almohadas", "ord": 7, "n": "Protector de almohada sensación fría", "pct": 40, "v": [{"t": "47 x 67 cm", "f": 53445, "d": 32067, "c": ["7702704616947"]}]}, {"id": 42, "cat": "Fundas", "ord": 8, "n": "Funda 50X73 150H 50/50 P/A Essencial", "pct": 40, "v": [{"t": null, "f": 22995, "d": 13797, "c": ["7702704458585"]}]}, {"id": 43, "cat": "Fundas", "ord": 8, "n": "Funda 50X73 180H 50/50 P/A Essencial", "pct": 40, "v": [{"t": null, "f": 34545, "d": 20727, "c": ["7702704458646"]}]}, {"id": 44, "cat": "Fundas", "ord": 8, "n": "Setx2 Funda 50X75 400H 100%A Cen Menfis", "pct": 40, "v": [{"t": null, "f": 106995, "d": 64197, "c": ["7702704699568"]}]}, {"id": 45, "cat": "Fundas", "ord": 8, "n": "Setx2 Funda 50X75Cm 300H 40/60 Pa He Sp", "pct": 40, "v": [{"t": null, "f": 60795, "d": 36477, "c": ["7702704951581"]}]}, {"id": 46, "cat": "Fundas", "ord": 8, "n": "Setx2 Funda 50X90 300H 40/60 Pa He Sp Sc", "pct": 40, "v": [{"t": null, "f": 72345, "d": 43407, "c": ["7702704951574"]}]}, {"id": 47, "cat": "Fundas", "ord": 8, "n": "Setx2 Funda 50X90 400H 100%A Cen Menfis", "pct": 40, "v": [{"t": null, "f": 121695, "d": 73017, "c": ["7702704699575"]}]}, {"id": 48, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X70 300H 100%A Ss Cene", "pct": 40, "v": [{"t": null, "f": 87045, "d": 52227, "c": ["7702704566297"]}]}, {"id": 49, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X73 180H Pa Essencial", "pct": 40, "v": [{"t": null, "f": 52395, "d": 31437, "c": ["7702704459124"]}]}, {"id": 50, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X73Cm 150H 50/50 Pa", "pct": 40, "v": [{"t": null, "f": 46095, "d": 27657, "c": ["7702704955985"]}]}, {"id": 51, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X75 400H 100%A Cenefa Ses", "pct": 40, "v": [{"t": null, "f": 92295, "d": 55377, "c": ["7702704996148"]}]}, {"id": 52, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X75 400H 100%A Pliegues", "pct": 40, "v": [{"t": null, "f": 92295, "d": 55377, "c": ["7702704564774", "7702704680184", "7702704680177"]}]}, {"id": 53, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X90 150H 50/50 Pa Dllo10", "pct": 40, "v": [{"t": null, "f": 52395, "d": 31437, "c": ["7702704954568"]}]}, {"id": 54, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X90 300H 100%A Ss Cene", "pct": 40, "v": [{"t": null, "f": 98595, "d": 59157, "c": ["7702704566327"]}]}, {"id": 55, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X90 400H 100%A Cenefa Ses", "pct": 40, "v": [{"t": null, "f": 99645, "d": 59787, "c": ["7702704996223"]}]}, {"id": 56, "cat": "Fundas", "ord": 8, "n": "Setx2 Fundas 50X90 400H 100%A Pliegues", "pct": 40, "v": [{"t": null, "f": 103845, "d": 62307, "c": ["7702704564804", "7702704680207", "7702704680191"]}]}, {"id": 57, "cat": "Fundas", "ord": 8, "n": "Setx2Fundas 50X75 150H 50/50Pa Miniprint", "pct": 40, "v": [{"t": null, "f": 46095, "d": 27657, "c": ["7702704954599"]}]}, {"id": 58, "cat": "Toallas", "ord": 9, "n": "Toalla 30Scs 31X32 380G 100%Alg", "pct": 40, "v": [{"t": null, "f": 6195, "d": 3717, "c": ["7702704631452"]}]}, {"id": 59, "cat": "Toallas", "ord": 9, "n": "Toalla 50X90 Thc 78610Classic 700Gr100%A", "pct": 40, "v": [{"t": null, "f": 57645, "d": 34587, "c": ["7702704440283"]}]}, {"id": 60, "cat": "Toallas", "ord": 9, "n": "Toalla 58Ricu 50X80Cm 480Gr 100%Alg", "pct": 40, "v": [{"t": null, "f": 29295, "d": 17577, "c": ["7702704995196"]}]}, {"id": 61, "cat": "Toallas", "ord": 9, "n": "Toalla 70Ricu 70X140Cm 480Gr 100%Alg", "pct": 40, "v": [{"t": null, "f": 75495, "d": 45297, "c": ["7702704995233"]}]}, {"id": 62, "cat": "Toallas", "ord": 9, "n": "Toalla 78X160 Thc 10Classic 700Gr 100%Al", "pct": 40, "v": [{"t": null, "f": 141645, "d": 84987, "c": ["7702704440276"]}]}, {"id": 63, "cat": "Toallas", "ord": 9, "n": "Toalla Malibu 50X90 620Gr 100%Alg", "pct": 40, "v": [{"t": null, "f": 46095, "d": 27657, "c": ["7702704634378"]}]}, {"id": 64, "cat": "Toallas", "ord": 9, "n": "Toalla Malibu 70X140 620Gr 100%Alg", "pct": 40, "v": [{"t": null, "f": 96495, "d": 57897, "c": ["7702704397990"]}]}, {"id": 65, "cat": "Toallas", "ord": 9, "n": "Toalla Solvlux#2 50X70 630Gm Hydra", "pct": 40, "v": [{"t": null, "f": 46095, "d": 27657, "c": ["7702704995356"]}]}, {"id": 66, "cat": "Toallas", "ord": 9, "n": "Toalla Solvlux#2 70X140 630 Gms Hydra", "pct": 40, "v": [{"t": null, "f": 98595, "d": 59157, "c": ["7702704995172"]}]}, {"id": 67, "cat": "Cobijas", "ord": 10, "n": "Cob Flanne Chevron 140X200 100%Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 110145, "d": 66087, "c": ["7702704638581"]}]}, {"id": 68, "cat": "Cobijas", "ord": 10, "n": "Cob Flanne Chevron 180X200 100%Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 125895, "d": 75537, "c": ["7702704638611", "7702704638628", "7702704638604"]}]}, {"id": 69, "cat": "Cobijas", "ord": 10, "n": "Cob Flanne Chevron 220X220 100%Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 146895, "d": 88137, "c": ["7702704638659", "7702704638635"]}]}, {"id": 70, "cat": "Cobijas", "ord": 10, "n": "Cob Flannel Jacq Bee 140X200 100%P 280Gr", "pct": 40, "v": [{"t": null, "f": 150045, "d": 90027, "c": ["7702704438204"]}]}, {"id": 71, "cat": "Cobijas", "ord": 10, "n": "Cob Flannel Jacq Bee 180X220 100%P 280Gr", "pct": 40, "v": [{"t": null, "f": 173145, "d": 103887, "c": ["7702704438235"]}]}, {"id": 72, "cat": "Cobijas", "ord": 10, "n": "Cob Flannel Jacq Bee 220X220 100%P 280Gr", "pct": 40, "v": [{"t": null, "f": 196245, "d": 117747, "c": ["7702704438266"]}]}, {"id": 73, "cat": "Cobijas", "ord": 10, "n": "Cobija Flannel Ribbed 220X220 Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 157395, "d": 94437, "c": ["7702704944668", "7702704944675"]}]}, {"id": 74, "cat": "Cobijas", "ord": 10, "n": "Cobija Flannel Ribbed180X200 Pol 250Gr", "pct": 40, "v": [{"t": null, "f": 136395, "d": 81837, "c": ["7702704944637", "7702704944644"]}]}, {"id": 75, "cat": "Fragancias & kits", "ord": 11, "n": "Difusor Varas Rattan Loft Ambar 50Ml", "pct": 40, "v": [{"t": null, "f": 96910, "d": 58146, "c": ["7702704647583"]}]}, {"id": 76, "cat": "Fragancias & kits", "ord": 11, "n": "Fragancia Agua Linos Calma Primav 110Ml", "pct": 40, "v": [{"t": null, "f": 46195, "d": 27717, "c": ["7702704577323"]}]}, {"id": 77, "cat": "Fragancias & kits", "ord": 11, "n": "Fragancia Bruma Calma Primaveral 135Ml", "pct": 40, "v": [{"t": null, "f": 36272, "d": 21763, "c": ["7702704529735"]}]}, {"id": 78, "cat": "Fragancias & kits", "ord": 11, "n": "Fragancia Cbd Therapy 210Ml", "pct": 40, "v": [{"t": null, "f": 58322, "d": 34993, "c": ["7702704620296"]}]}, {"id": 79, "cat": "Fragancias & kits", "ord": 11, "n": "Fragancia Linos Loft 250Ml", "pct": 40, "v": [{"t": null, "f": 91397, "d": 54838, "c": ["7702704647569"]}]}, {"id": 80, "cat": "Fragancias & kits", "ord": 11, "n": "Jabon Liquido Calma Primaveral 250Ml", "pct": 40, "v": [{"t": null, "f": 46195, "d": 27717, "c": ["7702704498888"]}]}, {"id": 81, "cat": "Fragancias & kits", "ord": 11, "n": "Kit Aceite Corp 110Ml+Agua Linos 135Ml F", "pct": 40, "v": [{"t": null, "f": 82845, "d": 49707, "c": ["7702704615957"]}]}, {"id": 82, "cat": "Fragancias & kits", "ord": 11, "n": "Kit Calma Primaveral Bruma+Frag+Jabon Li", "pct": 40, "v": [{"t": null, "f": 121695, "d": 73017, "c": ["7702704577347"]}]}, {"id": 83, "cat": "Fragancias & kits", "ord": 11, "n": "Kit Hotel Experience Fragancia + Vela", "pct": 40, "v": [{"t": null, "f": 188894, "d": 113336, "c": ["7702704993420"]}]}, {"id": 84, "cat": "Fragancias & kits", "ord": 11, "n": "Perfume Linos He Ambar 250Ml", "pct": 40, "v": [{"t": null, "f": 104627, "d": 62776, "c": ["7702704647538"]}]}];
@@ -256,7 +379,39 @@ document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!=
 document.querySelector('.brand .tag').textContent=`${PRODUCTS.length} productos · ${TOTAL_CODES} códigos · toca un código para copiarlo`;
 buildChips();
 render();
-if(window.matchMedia && window.matchMedia('(pointer:fine)').matches){ input.focus(); }
+/* ---- tutorial / onboarding ---- */
+(function(){
+  const tut=document.getElementById('tut');
+  const track=document.getElementById('tut-track');
+  const slides=Array.prototype.slice.call(track.children);
+  const dotsWrap=document.getElementById('tut-dots');
+  const btnNext=document.getElementById('tut-next');
+  const btnPrev=document.getElementById('tut-prev');
+  let ti=0;
+  dotsWrap.innerHTML=slides.map((_,i)=>`<span class="tut-dot${i===0?' on':''}"></span>`).join('');
+  const dots=Array.prototype.slice.call(dotsWrap.children);
+  function tShow(i){
+    ti=Math.max(0,Math.min(slides.length-1,i));
+    track.style.transform='translateX('+(-ti*100)+'%)';
+    dots.forEach((d,k)=>d.classList.toggle('on',k===ti));
+    btnPrev.style.visibility = ti===0 ? 'hidden' : 'visible';
+    btnNext.textContent = ti===slides.length-1 ? '¡Listo, a vender!' : 'Siguiente';
+  }
+  function openTut(){ tut.classList.add('show'); tut.setAttribute('aria-hidden','false'); tShow(0); document.body.style.overflow='hidden'; }
+  function closeTut(){ tut.classList.remove('show'); tut.setAttribute('aria-hidden','true'); document.body.style.overflow=''; try{localStorage.setItem('feria_tut','1');}catch(e){} }
+  btnNext.addEventListener('click',()=>{ if(ti===slides.length-1) closeTut(); else tShow(ti+1); });
+  btnPrev.addEventListener('click',()=>tShow(ti-1));
+  document.getElementById('tut-skip').addEventListener('click',closeTut);
+  tut.addEventListener('click',e=>{ if(e.target===tut) closeTut(); });
+  document.getElementById('help').addEventListener('click',openTut);
+  document.addEventListener('keydown',e=>{ if(!tut.classList.contains('show'))return; if(e.key==='Escape')closeTut(); else if(e.key==='ArrowRight')tShow(ti+1); else if(e.key==='ArrowLeft')tShow(ti-1); });
+  let sx=null;
+  track.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
+  track.addEventListener('touchend',e=>{ if(sx===null)return; const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>40){ if(dx<0)tShow(ti+1); else tShow(ti-1);} sx=null; },{passive:true});
+  let firstRun=false; try{ firstRun=!localStorage.getItem('feria_tut'); }catch(e){ firstRun=true; }
+  if(firstRun) openTut();
+  else if(window.matchMedia && window.matchMedia('(pointer:fine)').matches) input.focus();
+})();
 </script>
 </body>
 </html>
